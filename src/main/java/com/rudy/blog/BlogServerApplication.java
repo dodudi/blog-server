@@ -1,4 +1,4 @@
-package com.rudy.blogserver;
+package com.rudy.blog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
