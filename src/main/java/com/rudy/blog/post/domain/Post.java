@@ -5,10 +5,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,4 +20,12 @@ public class Post extends BaseEntity {
     private String title;
     private String content;
     private String author;
+    private String format;
+
+    public Post(String title, String content, String author, String format) {
+        this.title = title;
+        this.content = content;
+        this.author = author;
+        this.format = format;
+    }
 }
