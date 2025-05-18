@@ -34,4 +34,3 @@ springdoc:
 
 url:
   auth-server: ${AUTH_SERVER}
-  file-server: ${FILE_SERVER}
