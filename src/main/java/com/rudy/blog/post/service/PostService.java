@@ -27,6 +27,17 @@ public class PostService {
     }
 
     /**
+     * 게시물 아이디로 조회하는 메서드
+     */
+    public PostResponse getPost(Long postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new IllegalArgumentException("post not found"));
+
+        return new PostResponse(post);
+    }
+
+
+    /**
      * 게시물을 저장하는 메서드
      *
      * @return 저장한 게시물의 정보를 응답합니다.

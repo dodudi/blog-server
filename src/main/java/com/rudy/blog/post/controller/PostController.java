@@ -24,9 +24,15 @@ public class PostController {
         return ResponseEntity.ok(posts);
     }
 
+    @GetMapping("/{post_id}")
+    public ResponseEntity<PostResponse> getPost(@PathVariable(value = "post_id") Long postId) {
+        PostResponse post = postService.getPost(postId);
+        return ResponseEntity.ok(post);
+    }
+
     @PostMapping
     public ResponseEntity<PostResponse> savePost(
-            @Valid @Parameter @ModelAttribute PostRequest postRequest
+            @Valid @Parameter @RequestBody PostRequest postRequest
     ) {
         PostResponse post = postService.savePost(postRequest);
         return ResponseEntity.ok(post);
