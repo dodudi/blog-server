@@ -35,4 +35,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
 *.jar
+### CUSTOM ###
+*.bkp
+*.dtmp
+*.drawio
