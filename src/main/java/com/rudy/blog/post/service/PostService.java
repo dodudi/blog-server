@@ -1,7 +1,9 @@
 package com.rudy.blog.post.service;
 
 import com.rudy.blog.post.domain.Post;
+import com.rudy.blog.post.domain.Tag;
 import com.rudy.blog.post.repository.PostRepository;
+import com.rudy.blog.post.repository.TagRepository;
 import com.rudy.blog.post.request.PostRequest;
 import com.rudy.blog.post.response.PostResponse;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final TagRepository tagRepository;
 
     /**
      * 게시물을 페이징 조회하는 메서드
@@ -22,7 +25,7 @@ public class PostService {
      * @return 조회한 페이징 게시물을 응답합니다.
      */
     public Page<PostResponse> getPosts(Pageable pageable) {
-        Page<Post> posts = postRepository.findAll(pageable);
+        Page<Post> posts = postRepository.findAllWithTags(pageable);
         return posts.map(PostResponse::new);
     }
 
@@ -30,9 +33,7 @@ public class PostService {
      * 게시물 아이디로 조회하는 메서드
      */
     public PostResponse getPost(Long postId) {
-        Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new IllegalArgumentException("post not found"));
-
+        Post post = postRepository.findById(postId).orElseThrow(() -> new IllegalArgumentException("post not found"));
         return new PostResponse(post);
     }
 
@@ -45,8 +46,13 @@ public class PostService {
     @Transactional
     public PostResponse savePost(PostRequest postRequest) {
         Post post = new Post(postRequest.getTitle(), postRequest.getContent(), "", postRequest.getFormat());
-        post = postRepository.save(post);
+        for (String tagName : postRequest.getTags()) {
+            Tag tag = new Tag(tagName);
+            post.addTag(tag);
+            tagRepository.save(tag);
+        }
 
+        post = postRepository.save(post);
         return new PostResponse(post);
     }
 }
