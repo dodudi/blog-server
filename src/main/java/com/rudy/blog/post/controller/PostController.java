@@ -1,5 +1,6 @@
 package com.rudy.blog.post.controller;
 
+import com.rudy.blog.global.ApiResponse;
 import com.rudy.blog.post.request.PostRequest;
 import com.rudy.blog.post.response.PostResponse;
 import com.rudy.blog.post.service.PostService;
@@ -19,22 +20,22 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping
-    public ResponseEntity<Page<PostResponse>> getPosts(Pageable pageable) {
+    public ResponseEntity<ApiResponse> getPosts(Pageable pageable) {
         Page<PostResponse> posts = postService.getPosts(pageable);
-        return ResponseEntity.ok(posts);
+        return ResponseEntity.ok(ApiResponse.ok(posts));
     }
 
     @GetMapping("/{post_id}")
-    public ResponseEntity<PostResponse> getPost(@PathVariable(value = "post_id") Long postId) {
+    public ResponseEntity<ApiResponse> getPost(@PathVariable(value = "post_id") Long postId) {
         PostResponse post = postService.getPost(postId);
-        return ResponseEntity.ok(post);
+        return ResponseEntity.ok(ApiResponse.ok(post));
     }
 
     @PostMapping
-    public ResponseEntity<PostResponse> savePost(
+    public ResponseEntity<ApiResponse> savePost(
             @Valid @Parameter @RequestBody PostRequest postRequest
     ) {
         PostResponse post = postService.savePost(postRequest);
-        return ResponseEntity.ok(post);
+        return ResponseEntity.ok(ApiResponse.ok(post));
     }
 }
