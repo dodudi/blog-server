@@ -2,6 +2,7 @@ package com.rudy.blog.post.controller;
 
 import com.rudy.blog.global.ApiResponse;
 import com.rudy.blog.post.request.PostRequest;
+import com.rudy.blog.post.request.PostUpdateRequest;
 import com.rudy.blog.post.response.PostResponse;
 import com.rudy.blog.post.service.PostService;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -36,6 +37,15 @@ public class PostController {
             @Valid @Parameter @RequestBody PostRequest postRequest
     ) {
         PostResponse post = postService.savePost(postRequest);
+        return ResponseEntity.ok(ApiResponse.ok(post));
+    }
+
+    @PutMapping("/{post_id}")
+    public ResponseEntity<ApiResponse> updatePost(
+            @PathVariable(value = "post_id") Long postId,
+            @Valid @Parameter @RequestBody PostUpdateRequest postUpdateRequest
+    ) {
+        PostResponse post = postService.updatePost(postId, postUpdateRequest);
         return ResponseEntity.ok(ApiResponse.ok(post));
     }
 }

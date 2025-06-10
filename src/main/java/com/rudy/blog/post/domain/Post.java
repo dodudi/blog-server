@@ -5,9 +5,11 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -35,8 +37,19 @@ public class Post extends BaseEntity {
         this.format = format;
     }
 
-    public void addTag(Tag tag) {
-        PostTag postTag = new PostTag(this, tag);
-        this.postTags.add(postTag);
+    public void addPostTag(Tag tag) {
+        if (this.postTags.stream().noneMatch(postTag -> postTag.getTag().equals(tag))) {
+            PostTag postTag = new PostTag(this, tag);
+            this.postTags.add(postTag);
+        }
+    }
+
+    public void updatePost(String title, String content) {
+        this.title = StringUtils.hasText(title) ? title : this.title;
+        this.content = StringUtils.hasText(content) ? content : this.content;
+    }
+
+    public void removePostTags(Set<Tag> tags) {
+        this.postTags.removeIf(postTag -> !tags.contains(postTag.getTag()));
     }
 }
