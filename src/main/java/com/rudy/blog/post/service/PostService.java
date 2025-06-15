@@ -62,7 +62,10 @@ public class PostService {
 
 
     /**
-     * 게시물을 수정하는 메서드
+     * 게시물을 수정하는 메서드 <br>
+     * post 엔티티를 기준으로 서비스 로직 진행 <br>
+     * post_tag 엔티티는 삭제, 추가 기능 <br>
+     * tag 엔티티는 추가 기능<br>
      *
      * @return 수정된 게시물의 정보를 응답합니다.
      */

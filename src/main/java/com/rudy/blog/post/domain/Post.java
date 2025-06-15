@@ -49,6 +49,9 @@ public class Post extends BaseEntity {
         this.content = StringUtils.hasText(content) ? content : this.content;
     }
 
+    /**
+     * @param tags 삭제하고 싶지 않은 Tag 리스트, 입력 받은 {@code tags} 를 제외한 모든 연결된 post_tag 삭제
+     */
     public void removePostTags(Set<Tag> tags) {
         this.postTags.removeIf(postTag -> !tags.contains(postTag.getTag()));
     }
