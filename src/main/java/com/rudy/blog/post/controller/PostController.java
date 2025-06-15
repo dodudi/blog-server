@@ -1,6 +1,6 @@
 package com.rudy.blog.post.controller;
 
-import com.rudy.blog.global.ApiResponse;
+import com.rudy.blog.global.response.ApiResponse;
 import com.rudy.blog.post.request.PostRequest;
 import com.rudy.blog.post.request.PostUpdateRequest;
 import com.rudy.blog.post.response.PostResponse;

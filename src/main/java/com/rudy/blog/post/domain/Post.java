@@ -1,6 +1,6 @@
 package com.rudy.blog.post.domain;
 
-import com.rudy.blog.global.BaseEntity;
+import com.rudy.blog.global.domain.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;

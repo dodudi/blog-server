@@ -1,4 +1,4 @@
-package com.rudy.blog.global;
+package com.rudy.blog.global.response;
 
 import lombok.Getter;
 

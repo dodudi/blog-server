@@ -1,4 +1,4 @@
-package com.rudy.blog.config;
+package com.rudy.blog.global.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;

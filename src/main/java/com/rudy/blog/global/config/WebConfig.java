@@ -1,4 +1,4 @@
-package com.rudy.blog.config;
+package com.rudy.blog.global.config;
 
 import com.rudy.blog.interceptor.JwtInterceptor;
 import lombok.RequiredArgsConstructor;

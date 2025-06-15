@@ -13,7 +13,7 @@ public class PostUpdateRequest {
 
     @NotNull(message = "content must not be null")
     private final String content;
-    
+
     private final Set<String> tags;
 
     public PostUpdateRequest(String title, String content, Set<String> tags) {
